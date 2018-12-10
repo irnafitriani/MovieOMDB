@@ -10,8 +10,9 @@ import Foundation
 import Moya
 
 enum MovieApi {
-    case searchByTitle(title: String, page: Int)
+    case searchByTitle(title: String)
     case searchById(id: String)
+    case searchMovies(searchText: String, page: Int)
 }
 
 extension MovieApi: TargetType {
@@ -26,24 +27,26 @@ extension MovieApi: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .searchById, .searchByTitle:
+        case .searchById, .searchByTitle, .searchMovies:
             return .get
         }
     }
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .searchById, .searchByTitle:
+        case .searchById, .searchByTitle, .searchMovies:
             return URLEncoding.queryString
         }
     }
     
     var parameters: [String : Any]? {
         switch self {
-        case .searchByTitle(let title, let page):
-            return ["s" : title, "apikey": API.apiKey, "page" : page]
+        case .searchByTitle(let title):
+            return ["t" : title, "apikey": API.apiKey]
         case .searchById(let id):
             return ["i" : id, "apikey" : API.apiKey]
+        case .searchMovies(let searchText, let page):
+            return ["s" : searchText, "apikey": API.apiKey, "page" : page]
         }
     }
     
@@ -53,7 +56,7 @@ extension MovieApi: TargetType {
     
     var task: Task {
         switch self {
-        case .searchByTitle, .searchById:
+        case .searchByTitle, .searchById, .searchMovies:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         }
     }

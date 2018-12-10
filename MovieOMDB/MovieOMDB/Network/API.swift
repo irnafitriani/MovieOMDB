@@ -17,26 +17,39 @@ class API {
     
     static let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: true)]) // for development
     
-    static func searchByTitle(title: String, page: Int, completion: @escaping(Movie) -> ()) {
-        provider.request(.searchByTitle(title: title, page: page)) { result in
+    static func searchMovies(searchText: String, page: Int, completion: @escaping(MovieSearch) -> ()){
+        provider.request(.searchMovies(searchText: searchText, page: page)) { results in
+            switch results {
+            case let .success(response):
+                do {
+                    let results = try JSONDecoder().decode(MovieSearch.self, from: response.data)
+                    completion(results)
+                } catch let err {
+                    print(err)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    
+    static func searchByTitle(title: String, completion: @escaping(Movie) -> ()) {
+        provider.request(.searchByTitle(title: title)) { result in
             
             switch result {
             case let .success(response):
                 do {
                     
-                    if let json = try JSONSerialization.jsonObject(with: response.data, options: [.mutableContainers]) as? [String: AnyObject] {
-                        guard let itemsJsonArray = json["movies"] as? [[String: AnyObject]] else {
-                            return
-                        }
-                        DispatchQueue.main.async {
-//                            completion((itemsJsonArray))
-                        }
+                    guard let data = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String : Any]
+                    else{return}
+                    
+                    let imdbId = data ["imdbID"] as! String
+                    
+                    if !isMovieExists(id: imdbId){
+                        guard let movie = createMovieEntityFrom(dictionary: data) else {return}
+                        completion(movie)
                     }
-//                    guard let data = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String : Any]
-//                    else{return}
-//
-//                    guard let movie = createMovieEntityFrom(dictionary: data) else {return}
-//                    completion(movie)
                     
                 } catch let err {
                     print(err)
@@ -45,6 +58,24 @@ class API {
                 print(error)
             }
         }
+    }
+    
+    
+    //Check data is Exist
+    static private func isMovieExists(id: String) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        fetchRequest.includesSubentities = false
+        let context = appDelegate.persistentContainer.viewContext
+        var entitiesCount = 0
+        
+        do {
+            entitiesCount = try context.count(for: fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        
+        return entitiesCount > 0
     }
     
     

@@ -7,10 +7,21 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCell: UICollectionViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
+    
+    func configure(_ model: Search) {
+        titleLabel.text = model.title
+        yearLabel.text = model.year
+        
+        
+        guard let posterPath = model.poster else { return }
+        let imgUrl = URL(string: posterPath)
+        posterImageView.kf.setImage(with: imgUrl)
+    }
     
 }

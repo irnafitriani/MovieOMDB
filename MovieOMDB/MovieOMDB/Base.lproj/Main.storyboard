@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FL2-wE-Ltk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T1Y-9g-QOy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,16 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKy-Id-fVc">
-                                <rect key="frame" x="16" y="318" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKy-Id-fVc">
+                                <rect key="frame" x="8" y="350.5" width="359" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-q8-vgQ">
-                                <rect key="frame" x="163" y="363" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rac-q8-vgQ">
+                                <rect key="frame" x="8" y="388.5" width="359" height="30"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="btnSearchTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Bd-vy-hgw"/>
@@ -36,15 +34,26 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Rac-q8-vgQ" firstAttribute="top" secondItem="sKy-Id-fVc" secondAttribute="bottom" constant="8" id="9xW-Va-UIf"/>
+                            <constraint firstItem="sKy-Id-fVc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="EQb-06-kcD"/>
+                            <constraint firstItem="Rac-q8-vgQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Z7A-R8-tEJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rac-q8-vgQ" secondAttribute="trailing" constant="8" id="dwG-4p-ebI"/>
+                            <constraint firstItem="sKy-Id-fVc" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jpu-E4-mUh"/>
+                            <constraint firstItem="sKy-Id-fVc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pYr-6p-Ok3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sKy-Id-fVc" secondAttribute="trailing" constant="8" id="x53-eD-B01"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="lzw-lJ-h2q"/>
                     <connections>
                         <outlet property="searchTextField" destination="sKy-Id-fVc" id="9mu-kB-T4k"/>
+                        <segue destination="FL2-wE-Ltk" kind="show" identifier="ShowMovieList" id="4Z3-SQ-Zx0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="104.7976011994003"/>
+            <point key="canvasLocation" x="1055.2" y="104.7976011994003"/>
         </scene>
         <!--Movie List View Controller-->
         <scene sceneID="0Tg-Np-ogJ">
@@ -132,7 +141,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QO-WZ-TpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="104.7976011994003"/>
+            <point key="canvasLocation" x="1799.2" y="104.7976011994003"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1xH-bl-Frx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T1Y-9g-QOy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qFb-zZ-IPz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eUY-hd-VpR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjs-6M-cFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="104.7976011994003"/>
         </scene>
     </scenes>
 </document>
