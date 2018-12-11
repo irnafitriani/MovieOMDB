@@ -26,6 +26,8 @@
 		2A2048BC21BEA6BD00398F6C /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2048BB21BEA6BD00398F6C /* ColumnFlowLayout.swift */; };
 		2A2048BE21BEA9BE00398F6C /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2048BD21BEA9BE00398F6C /* MovieCell.swift */; };
 		2A2048C021BEB5A900398F6C /* MovieSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2048BF21BEB5A900398F6C /* MovieSearch.swift */; };
+		2A21FB4921BF5B9100D6BE9A /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A21FB4821BF5B9100D6BE9A /* MovieDetailViewController.swift */; };
+		2A21FB4B21BF5D6F00D6BE9A /* MovieDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A21FB4A21BF5D6F00D6BE9A /* MovieDetailTableViewCell.swift */; };
 		5945CA9B129AD43AF09FF59D /* Pods_MovieOMDBUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD46AC2015EEA79FE34ADA90 /* Pods_MovieOMDBUITests.framework */; };
 		B004ECC784DEF5C8CDD960B2 /* Pods_MovieOMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2194F4FBAE718A8EB78A6 /* Pods_MovieOMDB.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		2A2048BB21BEA6BD00398F6C /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		2A2048BD21BEA9BE00398F6C /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		2A2048BF21BEB5A900398F6C /* MovieSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearch.swift; sourceTree = "<group>"; };
+		2A21FB4821BF5B9100D6BE9A /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		2A21FB4A21BF5D6F00D6BE9A /* MovieDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailTableViewCell.swift; sourceTree = "<group>"; };
 		68C07DF737223C3D2DD38D01 /* Pods-MovieOMDBUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieOMDBUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieOMDBUITests/Pods-MovieOMDBUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A42A9C0EACFCD19687CCA6CC /* Pods-MovieOMDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieOMDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieOMDB/Pods-MovieOMDB.debug.xcconfig"; sourceTree = "<group>"; };
 		D2F758CEBF9AC40438AFBF84 /* Pods_MovieOMDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieOMDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +159,8 @@
 				2A11A3AD21BD348600C34132 /* ViewController.swift */,
 				2A2048B921BEA45900398F6C /* MovieListViewController.swift */,
 				2A2048BB21BEA6BD00398F6C /* ColumnFlowLayout.swift */,
+				2A21FB4821BF5B9100D6BE9A /* MovieDetailViewController.swift */,
+				2A21FB4A21BF5D6F00D6BE9A /* MovieDetailTableViewCell.swift */,
 				2A2048BD21BEA9BE00398F6C /* MovieCell.swift */,
 				2A11A3AF21BD348600C34132 /* Main.storyboard */,
 				2A11A3B521BD348700C34132 /* Assets.xcassets */,
@@ -430,10 +436,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A21FB4B21BF5D6F00D6BE9A /* MovieDetailTableViewCell.swift in Sources */,
 				2A11A3E921BD3CE800C34132 /* Movie+CoreDataClass.swift in Sources */,
 				2A2048C021BEB5A900398F6C /* MovieSearch.swift in Sources */,
 				2A2048BA21BEA45900398F6C /* MovieListViewController.swift in Sources */,
 				2A2048BE21BEA9BE00398F6C /* MovieCell.swift in Sources */,
+				2A21FB4921BF5B9100D6BE9A /* MovieDetailViewController.swift in Sources */,
 				2A11A3EA21BD3CE800C34132 /* Movie+CoreDataProperties.swift in Sources */,
 				2A11A3AE21BD348600C34132 /* ViewController.swift in Sources */,
 				2A11A3AC21BD348600C34132 /* AppDelegate.swift in Sources */,
@@ -548,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -602,7 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -619,6 +627,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2FEMK2NY4Z;
 				INFOPLIST_FILE = MovieOMDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,7 +635,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.irna.MovieOMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -638,6 +647,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2FEMK2NY4Z;
 				INFOPLIST_FILE = MovieOMDB/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -645,7 +655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.irna.MovieOMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -17,6 +17,7 @@ class MovieListViewController: UIViewController {
     var page = 1
     var totalPage = 1
     var searchText = ""
+    var movieDetail : Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +43,8 @@ class MovieListViewController: UIViewController {
     func callSearchByTitleApi(title: String){
         API.searchByTitle(title: title, completion: { result in
             
-            print(result)
+            self.movieDetail = result
+            self.performSegue(withIdentifier: "ShowMovieDetail", sender: self)
             
         })
     }
@@ -53,15 +55,21 @@ class MovieListViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ShowMovieDetail"{
+            let movieDetailVC = segue.destination as! MovieDetailViewController
+            movieDetailVC.movieDetail = movieDetail
+            
+        }
     }
-    */
+    
 }
 
 extension MovieListViewController : UICollectionViewDataSource, UICollectionViewDelegate {

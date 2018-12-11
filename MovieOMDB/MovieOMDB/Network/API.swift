@@ -45,11 +45,16 @@ class API {
                     else{return}
                     
                     let imdbId = data ["imdbID"] as! String
+                    var movie : Movie!
                     
                     if !isMovieExists(id: imdbId){
-                        guard let movie = createMovieEntityFrom(dictionary: data) else {return}
-                        completion(movie)
+                        movie = createMovieEntityFrom(dictionary: data)
+
                     }
+                    movie = fetchMovieDetail(id: imdbId)
+                    
+                    completion(movie)
+
                     
                 } catch let err {
                     print(err)
@@ -63,9 +68,10 @@ class API {
     
     //Check data is Exist
     static private func isMovieExists(id: String) -> Bool {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
-        fetchRequest.includesSubentities = false
         let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        fetchRequest.predicate = NSPredicate(format: "imdbID = %@", id)
+        fetchRequest.returnsObjectsAsFaults = false
         var entitiesCount = 0
         
         do {
@@ -78,16 +84,42 @@ class API {
         return entitiesCount > 0
     }
     
+    static private func fetchMovieDetail(id: String) -> Movie {
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        request.predicate = NSPredicate(format: "imdbID = %@", id)
+        request.returnsObjectsAsFaults = false
+        var arrayMovie = [Movie]()
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [Movie] {
+                print(data.value(forKey: "title") as! String)
+                arrayMovie.append(data)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+        
+        if arrayMovie.count > 0 {
+            return arrayMovie.first!
+        }
+        
+        return Movie()
+
+    }
+    
     
     // Add to Movie Entity
     static private func createMovieEntityFrom(dictionary: [String: Any]) -> Movie? {
         let context = appDelegate.persistentContainer.viewContext
         if let movieEntity = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: context) as? Movie {
-            movieEntity.actor = dictionary ["Actor"] as? String
+            movieEntity.actor = dictionary ["Actors"] as? String
             movieEntity.awards = dictionary ["Awards"] as? String
             movieEntity.boxOffice = dictionary ["BoxOffice"] as? String
             movieEntity.country = dictionary ["Country"] as? String
-            movieEntity.director = dictionary ["director"] as? String
+            movieEntity.director = dictionary ["Director"] as? String
             movieEntity.dvd = dictionary ["DVD"] as? String
             movieEntity.genre = dictionary ["Genre"] as? String
             movieEntity.imdbID = dictionary ["imdbID"] as? String
